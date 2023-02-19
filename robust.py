@@ -3,7 +3,6 @@ import simple
 
 
 class MQTTClient(simple.MQTTClient):
-
     DELAY = 2
     DEBUG = False
 

@@ -34,29 +34,35 @@ import ds18x20
 def test_main():
     """Test function for verifying basic functionality."""
     print("Running test_main")
-    lcd = GpioLcd(rs_pin=Pin(23),
-                  enable_pin=Pin(22),
-                  d4_pin=Pin(21),
-                  d5_pin=Pin(19),
-                  d6_pin=Pin(18),
-                  d7_pin=Pin(5),
-                  num_lines=2, num_columns=16)
+    lcd = GpioLcd(
+        rs_pin=Pin(23),
+        enable_pin=Pin(22),
+        d4_pin=Pin(21),
+        d5_pin=Pin(19),
+        d6_pin=Pin(18),
+        d7_pin=Pin(5),
+        num_lines=2,
+        num_columns=16,
+    )
     lcd.putstr("Jacob en Tobias\nzijn lief!")
     sleep(2)
     lcd.clear()
     count = 0
     while True:
         sleep(1)
-        lcd.move_to(0, 0)        
+        lcd.move_to(0, 0)
         count += 1
         ds_sensor.convert_temp()
         for i, rom in enumerate(roms):
-            lcd.putstr(f"T_{str(i)} = " + str(round(ds_sensor.read_temp(rom),1)) + " C\n")
+            lcd.putstr(
+                f"T_{str(i)} = " + str(round(ds_sensor.read_temp(rom), 1)) + " C\n"
+            )
             print(rom)
         print("counting further...")
+
 
 ds_pin = Pin(4)
 ds_sensor = ds18x20.DS18X20(onewire.OneWire(ds_pin))
 roms = ds_sensor.scan()
-print('Found DS devices: ', roms)
+print("Found DS devices: ", roms)
 test_main()
