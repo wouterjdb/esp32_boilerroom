@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 # Settings
-setting.py
+settings.py
