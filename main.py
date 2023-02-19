@@ -118,7 +118,7 @@ def main():
                 print("Checking messages...", end="")
                 client.check_msg()
                 print("[Done]")
-            except OSError:
+            except:
                 machine.reset()
 
             for i in range(1, len(settings.sensors) + 1):
@@ -126,9 +126,10 @@ def main():
                 print("Sensor %s = %s" % (i, str(sensor_value)))
 
                 if not math.isnan(sensor_value):
-                    client.publish(
-                        settings.MQTT_TOPIC_T + str(i), b"%s" % str(sensor_value)
-                    )
+                    if 0 < sensor_value < 100:
+                        client.publish(
+                            settings.MQTT_TOPIC_T + str(i), b"%s" % str(sensor_value)
+                        )
 
             sleep(settings.time_delay)
         except:
