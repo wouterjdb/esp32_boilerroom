@@ -51,3 +51,4 @@ class MQTTClient(simple.MQTTClient):
                 self.log(False, e)
             self.reconnect()
             attempts -= 1
+        raise Exception("Something went wrong while checking for messages")

@@ -119,7 +119,7 @@ def main():
                 client.check_msg()
                 print("[Done]")
             except OSError:
-                print("[OSError] An OSError has occured. Skipping")
+                machine.reset()
 
             for i in range(1, len(settings.sensors) + 1):
                 sensor_value = sensorarray.get_value(i)
